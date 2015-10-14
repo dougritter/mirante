@@ -26,6 +26,15 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
     buildTypes {
 
         debug {
@@ -48,8 +57,13 @@ dependencies {
     // Parse
     compile 'com.parse.bolts:bolts-android:1.+'
     compile fileTree(dir: 'libs', include: 'Parse-*.jar')
+
+    // Fabric
     compile('com.crashlytics.sdk.android:crashlytics:2.5.2@aar') {
         transitive = true;
     }
+
+    // Jake
+    compile 'com.jakewharton:butterknife:7.0.1'
 
 }
