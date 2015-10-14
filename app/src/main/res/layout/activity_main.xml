@@ -11,8 +11,35 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Criar canal"
+        android:textSize="18sp"
+        android:id="@+id/createChannelLabel" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Comunidade"
+        android:layout_marginTop="@dimen/app_margin_default"
+        android:layout_below="@id/createChannelLabel"
+        android:id="@+id/channel" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Criar canal"
+        android:layout_marginTop="@dimen/app_margin_default"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/channel"
+        android:id="@+id/createChannelButton" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="Criar conta"
         android:textSize="18sp"
+        android:layout_marginTop="@dimen/app_margin_default_med"
+        android:layout_below="@id/createChannelButton"
         android:id="@+id/createAccountLabel" />
 
     <EditText
