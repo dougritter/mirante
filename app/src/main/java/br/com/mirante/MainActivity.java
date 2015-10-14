@@ -3,18 +3,20 @@ package br.com.mirante;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -31,12 +33,15 @@ public class MainActivity extends AppCompatActivity {
 
     // Create channel
     @Bind(R.id.channel) EditText channel;
+    @Bind(R.id.retrievedChannels) TextView retrievedChannels;
 
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        retrieveChannels();
 
     }
 
@@ -79,22 +84,53 @@ public class MainActivity extends AppCompatActivity {
         parseObject.put(CHANNEL_NAME, channel.getText().toString());
 
         parseObject.saveInBackground(new SaveCallback() {
-            @Override public void done(ParseException e) {
+            @Override
+            public void done(ParseException e) {
                 if (e == null) {
                     Log.e(LOG_TAG, "Channel " + channel.getText().toString() + " saved");
-                    Toast.makeText(getApplicationContext(), "Channel "+channel.getText().toString()
+                    Toast.makeText(getApplicationContext(), "Channel " + channel.getText().toString()
                             + " saved", Toast.LENGTH_SHORT).show();
+
+                    retrieveChannels();
 
                 } else {
                     Log.e(LOG_TAG, "Error: something went wrong saving Channel " + channel.getText().toString());
                     Toast.makeText(getApplicationContext(), "Error: something went wrong saving Channel "
-                            +channel.getText().toString(), Toast.LENGTH_SHORT).show();
+                            + channel.getText().toString(), Toast.LENGTH_SHORT).show();
 
                 }
             }
         });
 
     }
+
+    public void retrieveChannels(){
+
+        ParseQuery query = new ParseQuery("Channel");
+//        query.whereEqualTo("Brand", "Burnettes");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> channels, ParseException e) {
+                if (e == null) {
+                    retrievedChannels.setText("");
+
+                    Log.e(LOG_TAG, "Retrieved channels. Size: "+channels.size());
+
+                    for(int i=0; i<channels.size(); i++){
+                        ParseObject object = channels.get(i);
+                        retrievedChannels.setText(retrievedChannels.getText() + "\n"+object.getString("channel_name"));
+                    }
+
+                } else {
+                    Log.e(LOG_TAG, "Error: "+e.getMessage());
+                }
+            }
+        });
+
+
+
+
+    }
+
 
 
 

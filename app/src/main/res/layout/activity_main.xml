@@ -23,13 +23,21 @@
         android:layout_below="@id/createChannelLabel"
         android:id="@+id/channel" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:layout_marginTop="@dimen/app_margin_default"
+        android:layout_below="@id/channel"
+        android:id="@+id/retrievedChannels" />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Criar canal"
         android:layout_marginTop="@dimen/app_margin_default"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/channel"
+        android:layout_below="@id/retrievedChannels"
         android:id="@+id/createChannelButton" />
 
 
