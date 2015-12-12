@@ -1,5 +1,6 @@
 package br.com.mirante;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,6 +19,8 @@ import com.parse.SignUpCallback;
 
 import java.util.List;
 
+import br.com.mirante.utils.Constants;
+import br.com.mirante.utils.TempSingleton;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -120,8 +123,15 @@ public class MainActivity extends AppCompatActivity {
                         retrievedChannels.setText(retrievedChannels.getText() + "\n"+object.getString("channel_name"));
                     }
 
+                    if (channels.size() > 0) {
+                        Intent intent = new Intent(MainActivity.this, NewPostActivity.class);
+                        TempSingleton.getInstance().setChannel(channels.get(0));
+                        startActivity(intent);
+                    }
+
+
                 } else {
-                    Log.e(LOG_TAG, "Error: "+e.getMessage());
+                    Log.e(LOG_TAG, "Error: " + e.getMessage());
                 }
             }
         });
