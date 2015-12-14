@@ -2,6 +2,8 @@ package br.com.mirante.utils;
 
 import com.parse.ParseObject;
 
+import br.com.mirante.model.Channel;
+
 /**
  * Created by douglasritter on 12/12/15.
  */
@@ -11,16 +13,16 @@ public class TempSingleton {
         return ourInstance;
     }
 
-    private ParseObject channel;
+    private Channel channel;
 
     private TempSingleton() {
     }
 
-    public ParseObject getChannel() {
+    public Channel getChannel() {
         return channel;
     }
 
-    public void setChannel(ParseObject channel) {
+    public void setChannel(Channel channel) {
         this.channel = channel;
     }
 }

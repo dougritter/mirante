@@ -19,7 +19,9 @@ import com.parse.SignUpCallback;
 
 import java.util.List;
 
+import br.com.mirante.model.Channel;
 import br.com.mirante.utils.Constants;
+import br.com.mirante.utils.ParseProxyObject;
 import br.com.mirante.utils.TempSingleton;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -120,12 +122,17 @@ public class MainActivity extends AppCompatActivity {
 
                     for(int i=0; i<channels.size(); i++){
                         ParseObject object = channels.get(i);
-                        retrievedChannels.setText(retrievedChannels.getText() + "\n"+object.getString("channel_name"));
+                        retrievedChannels.setText(retrievedChannels.getText() + "\n"+object.getString(Constants.PARSE_ATTR_CHANNEL_NAME));
                     }
 
                     if (channels.size() > 0) {
                         Intent intent = new Intent(MainActivity.this, NewPostActivity.class);
-                        TempSingleton.getInstance().setChannel(channels.get(0));
+
+                        Channel channel = (Channel) channels.get(0);
+                        intent.putExtra(Constants.PARSE_ATTR_CHANNEL_OBJECT_ID, channel.getObjectId());
+                        intent.putExtra(Constants.PARSE_ATTR_CHANNEL_NAME, channel.getName());
+
+
                         startActivity(intent);
                     }
 

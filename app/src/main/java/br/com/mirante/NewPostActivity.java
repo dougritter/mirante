@@ -11,6 +11,8 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.SaveCallback;
 
+import br.com.mirante.model.Channel;
+import br.com.mirante.model.Post;
 import br.com.mirante.utils.Constants;
 import br.com.mirante.utils.TempSingleton;
 
@@ -20,7 +22,7 @@ public class NewPostActivity extends AppCompatActivity {
     public static final String LOG_TAG = NewPostActivity.class.getSimpleName();
 
     // Java Objects
-    private ParseObject mChannel;
+    private Channel mChannel;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +30,12 @@ public class NewPostActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        /*if (getIntent() != null && getIntent().hasExtra(Constants.CHANNEL_ID_PREFERENCE)) {
-        }*/
+        if (getIntent() != null && getIntent().hasExtra(Constants.PARSE_ATTR_CHANNEL_NAME)) {
+            mChannel = new Channel();
+            mChannel.setName(getIntent().getStringExtra(Constants.PARSE_ATTR_CHANNEL_NAME));
+            mChannel.setObjectId(getIntent().getStringExtra(Constants.PARSE_ATTR_CHANNEL_OBJECT_ID));
 
-        mChannel = TempSingleton.getInstance().getChannel();
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(mOnclickListener);
@@ -51,7 +55,7 @@ public class NewPostActivity extends AppCompatActivity {
 
     public void testCreatePost() {
         if (mChannel != null) {
-            ParseObject parseObject = new ParseObject(Constants.PARSE_CLASS_POST);
+            Post parseObject = new Post();
             parseObject.put(Constants.PARSE_ATTR_POST_TITLE, "title test doug");
             parseObject.put(Constants.PARSE_ATTR_POST_TEXT, "text text text doug");
             parseObject.put(Constants.PARSE_ATTR_CHANNEL, mChannel);

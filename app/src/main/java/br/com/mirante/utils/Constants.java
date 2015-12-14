@@ -8,6 +8,7 @@ public class Constants {
     // Class Channel
     public static final String PARSE_CLASS_CHANNEL = "Channel";
     public static final String PARSE_ATTR_CHANNEL_NAME = "channel_name";
+    public static final String PARSE_ATTR_CHANNEL_OBJECT_ID = "object_id";
 
     // Class Post
     public static final String PARSE_CLASS_POST = "Post";
@@ -17,5 +18,6 @@ public class Constants {
 
 
     public static final String CHANNEL_ID_PREFERENCE = "channel_id_preference";
+
 
 }
