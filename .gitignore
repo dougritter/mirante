@@ -8,6 +8,10 @@ target/
 # Crashlytics
 com_crashlytics_export_strings.xml
 crashlytics-build.properties
+fabric.properties
+
+# Gradle Properties
+gradle.properties
 
 # Built application files
 *.apk
@@ -49,3 +53,5 @@ _sandbox
 
 # Log Files
 *.log
+
+
