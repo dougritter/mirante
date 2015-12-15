@@ -17,7 +17,8 @@
         android:id="@+id/loginContainer"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +27,6 @@
             android:id="@+id/textView" />
 
         <android.support.design.widget.TextInputLayout
-            android:layout_below="@+id/textView"
             android:id="@+id/userContainer"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
@@ -40,7 +40,6 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:layout_below="@id/userContainer"
             android:id="@+id/passwordContainer"
             android:layout_height="wrap_content"
             android:layout_width="match_parent">
@@ -66,6 +65,58 @@
             android:layout_height="wrap_content"
             android:text="@string/login_create_account_button"
             android:id="@+id/createAccountButton" />
+
+        <LinearLayout
+            android:id="@+id/createAccountContainer"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/newNameContainer"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_name_hint"
+                    android:id="@+id/newName" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/newUserContainer"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_user_hint"
+                    android:id="@+id/newUser" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/newPasswordContainer"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_password_hint"
+                    android:id="@+id/newPassword"
+                    android:inputType="textPassword" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
 
         <Button
             android:layout_marginTop="@dimen/app_margin_default_double"

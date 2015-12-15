@@ -10,6 +10,7 @@
 
     <!-- Login -->
     <string name="login_instructions">Se você já possui conta, faça seu login</string>
+    <string name="login_name_hint">Nome</string>
     <string name="login_user_hint">E-mail</string>
     <string name="login_password_hint">Senha</string>
     <string name="login_create_account_button">Criar minha conta</string>
