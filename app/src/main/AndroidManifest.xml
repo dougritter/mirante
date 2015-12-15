@@ -28,6 +28,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".views.activities.MainActivity" />
         </activity>
+
         <activity
             android:name=".views.activities.NewChannelActivity"
             android:label="@string/title_activity_new_channel"
