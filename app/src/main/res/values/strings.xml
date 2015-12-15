@@ -7,7 +7,6 @@
     <string name="title_activity_new_channel">NewChannelActivity</string>
     <string name="title_activity_home">HomeActivity</string>
 
-
     <!-- Login -->
     <string name="login_instructions">Se você já possui conta, faça seu login</string>
     <string name="login_name_hint">Nome</string>
@@ -15,7 +14,5 @@
     <string name="login_password_hint">Senha</string>
     <string name="login_create_account_button">Criar minha conta</string>
     <string name="login_skip_account_button">Acessar sem logar</string>
-    
-
 
 </resources>
