@@ -18,7 +18,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:animateLayoutChanges="true">
+        android:minHeight="130dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,6 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_user_hint"
+                android:inputType="textEmailAddress"
                 android:id="@+id/user" />
 
         </android.support.design.widget.TextInputLayout>
@@ -52,82 +53,29 @@
                 android:inputType="textPassword" />
 
         </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:layout_marginTop="@dimen/app_margin_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_submit_button"
+            android:id="@+id/submitButton" />
+
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="vertical"
+    <Button
+        android:layout_marginTop="@dimen/app_margin_default_double"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="@string/login_create_account_button"
+        android:id="@+id/createAccountButton" />
 
-        <Button
-            android:layout_marginTop="@dimen/app_margin_default_double"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_create_account_button"
-            android:id="@+id/createAccountButton" />
-
-        <LinearLayout
-            android:id="@+id/createAccountContainer"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/newNameContainer"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/login_name_hint"
-                    android:id="@+id/newName" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/newUserContainer"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/login_user_hint"
-                    android:id="@+id/newUser" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/newPasswordContainer"
-                android:visibility="gone"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/login_password_hint"
-                    android:id="@+id/newPassword"
-                    android:inputType="textPassword" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <Button
-            android:layout_marginTop="@dimen/app_margin_default_double"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/login_skip_account_button"
-            android:id="@+id/skipAccountCreation" />
-
-
-
-    </LinearLayout>
+    <Button
+        android:layout_marginTop="@dimen/app_margin_default_double"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login_skip_account_button"
+        android:id="@+id/skipAccountCreation" />
 
 
 </LinearLayout>

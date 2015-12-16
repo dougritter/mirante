@@ -12,7 +12,12 @@
     <string name="login_name_hint">Nome</string>
     <string name="login_user_hint">E-mail</string>
     <string name="login_password_hint">Senha</string>
+    <string name="login_show_login_fields_button">Login</string>
     <string name="login_create_account_button">Criar minha conta</string>
+    <string name="login_submit_button">Entrar</string>
     <string name="login_skip_account_button">Acessar sem logar</string>
+    <string name="new_account_instructions">Crie sua conta com apenas três dados</string>
+    <string name="new_account_save_button">Salvar</string>
+    <string name="title_activity_new_account">NewAccountActivity</string>
 
 </resources>

@@ -16,8 +16,7 @@ public class Constants {
     public static final String PARSE_ATTR_CHANNEL = "channel";
     public static final String PARSE_ATTR_POST_TEXT = "text";
 
-
-    public static final String CHANNEL_ID_PREFERENCE = "channel_id_preference";
-
+    // ParseUser
+    public static final String PARSE_USER_ATTR_NAME = "name";
 
 }
