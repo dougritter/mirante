@@ -49,8 +49,7 @@ public class NewAccountActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-    @OnClick(R.id.saveNewAccount)
-    void createAccount(View view) {
+    @OnClick(R.id.saveNewAccount) void createAccount(View view) {
         ParseUser parseUser = new ParseUser();
         parseUser.setUsername(newUser.getText().toString());
         parseUser.setEmail(newUser.getText().toString());
@@ -63,6 +62,7 @@ public class NewAccountActivity extends AppCompatActivity {
                     // Hooray! Let them use the app now.
                     Log.e(LOG_TAG, "Hooray! Let them use the app now");
                     Toast.makeText(getApplicationContext(), "Hooray! Let them use the app now", Toast.LENGTH_SHORT).show();
+                    handleAccountCreated();
 
                 } else {
                     // Sign up didn't succeed. Look at the ParseException
@@ -72,6 +72,12 @@ public class NewAccountActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void handleAccountCreated() {
+        setResult(HomeActivity.ACCOUNT_CREATED);
+        finish();
+
     }
 
 }

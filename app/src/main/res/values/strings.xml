@@ -19,5 +19,6 @@
     <string name="new_account_instructions">Crie sua conta com apenas três dados</string>
     <string name="new_account_save_button">Salvar</string>
     <string name="title_activity_new_account">NewAccountActivity</string>
+    <string name="title_activity_feed">FeedActivity</string>
 
 </resources>

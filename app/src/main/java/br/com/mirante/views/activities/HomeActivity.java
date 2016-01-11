@@ -2,16 +2,12 @@ package br.com.mirante.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
@@ -27,6 +23,7 @@ public class HomeActivity extends AppCompatActivity {
 
     // Constants
     public static final String LOG_TAG = HomeActivity.class.getSimpleName();
+    public static final int ACCOUNT_CREATED = 101;
 
     // View Objects
     @Bind(R.id.user) EditText user;
@@ -64,17 +61,23 @@ public class HomeActivity extends AppCompatActivity {
 
         }
 
-
     }
 
 
-    @OnClick(R.id.createAccountButton)
-    void createNewAccount(View view) {
+    @OnClick(R.id.createAccountButton) void createNewAccount(View view) {
         Intent intent = new Intent(HomeActivity.this, NewAccountActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, ACCOUNT_CREATED);
 
     }
 
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == ACCOUNT_CREATED) {
+            Toast.makeText(getApplicationContext(), "Login successful", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Login not successful", Toast.LENGTH_SHORT).show();
 
+        }
 
+    }
 }
