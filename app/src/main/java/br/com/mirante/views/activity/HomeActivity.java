@@ -37,7 +37,8 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         if (ParseUser.getCurrentUser() != null) {
-            Log.e(LOG_TAG, "User logged in: " + ParseUser.getCurrentUser().get(Constants.PARSE_USER_ATTR_NAME));
+            Log.e(LOG_TAG, "User is already logged in: " + ParseUser.getCurrentUser().get(Constants.PARSE_USER_ATTR_NAME));
+            showFeed();
         } else {
             Log.e(LOG_TAG, "User not logged in");
 
@@ -45,14 +46,13 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.submitButton)
-    void login(View view) {
+    @OnClick(R.id.submitButton) void login(View view) {
         if (!user.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
             ParseUser.logInInBackground(user.getText().toString().trim(),
                     password.getText().toString().trim(), new LogInCallback() {
                         public void done(ParseUser user, ParseException e) {
                             if (user != null) {
-                                Log.e(LOG_TAG, "User is logged in - " + user.getEmail());
+                                Log.e(LOG_TAG, "User was logged in - " + user.getEmail());
                                 showFeed();
                             } else {
                                 Log.e(LOG_TAG, "Sign in failed - " + e.getMessage());
