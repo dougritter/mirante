@@ -1,4 +1,4 @@
-package br.com.mirante.views.activities;
+package br.com.mirante.views.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -50,17 +50,24 @@ public class HomeActivity extends AppCompatActivity {
         if (!user.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
             ParseUser.logInInBackground(user.getText().toString().trim(),
                     password.getText().toString().trim(), new LogInCallback() {
-                public void done(ParseUser user, ParseException e) {
-                    if (user != null) {
-                        Log.e(LOG_TAG, "User is logged in - "+user.getEmail());
-                    } else {
-                        Log.e(LOG_TAG, "Sign in failed - " + e.getMessage());
-                    }
-                }
-            });
+                        public void done(ParseUser user, ParseException e) {
+                            if (user != null) {
+                                Log.e(LOG_TAG, "User is logged in - " + user.getEmail());
+                                showFeed();
+                            } else {
+                                Log.e(LOG_TAG, "Sign in failed - " + e.getMessage());
+                            }
+                        }
+                    });
 
         }
 
+    }
+
+    public void showFeed() {
+        Intent intent = new Intent(HomeActivity.this, FeedActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 

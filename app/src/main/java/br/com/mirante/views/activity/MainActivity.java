@@ -1,4 +1,4 @@
-package br.com.mirante.views.activities;
+package br.com.mirante.views.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +14,6 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import java.util.List;

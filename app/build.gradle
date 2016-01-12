@@ -48,6 +48,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dataBinding { enabled = true }
 }
 
 def supportVersion = "23.1.1"
