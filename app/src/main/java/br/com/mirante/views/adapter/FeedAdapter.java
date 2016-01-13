@@ -1,50 +1,55 @@
 package br.com.mirante.views.adapter;
 
+import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
+import br.com.mirante.BR;
 import br.com.mirante.R;
-import butterknife.Bind;
-import butterknife.ButterKnife;
+import br.com.mirante.databinding.FeedItemBinding;
 
-public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder> {
+public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedItemViewHolder> {
     private String[] mDataset;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.postTitle) TextView mPostTitle;
-        @Bind(R.id.postText) TextView mPostText;
-        @Bind(R.id.postImage) ImageView mPostImage;
+    public static class FeedItemViewHolder extends RecyclerView.ViewHolder {
+        private FeedItemBinding mBinding;
 
-        public ViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
+        public FeedItemViewHolder(View itemView) {
+            super(itemView);
         }
+
+        public ViewDataBinding getBinding() {
+            return mBinding;
+        }
+
+        public void setBinding(FeedItemBinding binding) {
+            this.mBinding = binding;
+        }
+
     }
 
     public FeedAdapter(String[] myDataset) {
         mDataset = myDataset;
     }
 
-    @Override public FeedAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                               .inflate(R.layout.feed_item, parent, false);
+    @Override public FeedItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.feed_item, parent, false);
+        return new FeedItemViewHolder(itemView);
 
-        ViewHolder vh = new ViewHolder(v);
-
-        return vh;
     }
 
-    @Override public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mPostTitle.setText(mDataset[position]);
+    @Override public void onBindViewHolder(FeedItemViewHolder holder, int position) {
+//        Post user = users.get(position);
+//        holder.getBinding().setVariable(BR.post, new Post());
+        holder.getBinding().executePendingBindings();
 
     }
 
     @Override public int getItemCount() {
         return mDataset.length;
     }
+
 }
