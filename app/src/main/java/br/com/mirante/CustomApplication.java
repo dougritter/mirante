@@ -21,8 +21,10 @@ public class CustomApplication extends Application {
 
         ParseObject.registerSubclass(Channel.class);
         ParseObject.registerSubclass(Post.class);
+        Parse.enableLocalDatastore(this);
 
         Parse.initialize(this, BuildConfig.PARSE_APP_ID, BuildConfig.PARSE_CLIENT_KEY);
+
     }
 
 

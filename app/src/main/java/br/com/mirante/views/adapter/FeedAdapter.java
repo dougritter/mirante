@@ -44,7 +44,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.FeedItemViewHo
     @Override public void onBindViewHolder(FeedItemViewHolder holder, int position) {
 //        Post user = users.get(position);
 //        holder.getBinding().setVariable(BR.post, new Post());
-        holder.getBinding().executePendingBindings();
+//        holder.getBinding().executePendingBindings();
 
     }
 

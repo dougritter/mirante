@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.parse.ParseException;
@@ -54,6 +55,12 @@ public class NewPostActivity extends AppCompatActivity {
 
     public void testCreatePost() {
         if (mChannel != null) {
+            mChannel.pinInBackground(new SaveCallback() {
+                @Override public void done(ParseException e) {
+                    Log.e(LOG_TAG, "Channel pinned to local storage");
+                }
+            });
+
             Post parseObject = new Post();
             parseObject.put(Constants.PARSE_ATTR_POST_TITLE, "title test doug");
             parseObject.put(Constants.PARSE_ATTR_POST_TEXT, "text text text doug");
