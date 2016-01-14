@@ -3,9 +3,7 @@ package br.com.mirante.model;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
-import java.io.Serializable;
-
-import br.com.mirante.utils.Constants;
+import br.com.mirante.util.Constants;
 
 /**
  * Created by douglas.machado on 12/14/15.

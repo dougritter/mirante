@@ -1,6 +1,4 @@
-package br.com.mirante.utils;
-
-import com.parse.ParseObject;
+package br.com.mirante.util;
 
 import br.com.mirante.model.Channel;
 

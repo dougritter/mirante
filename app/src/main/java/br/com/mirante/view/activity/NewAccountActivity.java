@@ -1,4 +1,4 @@
-package br.com.mirante.views.activity;
+package br.com.mirante.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +13,7 @@ import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
 import br.com.mirante.R;
-import br.com.mirante.utils.Constants;
+import br.com.mirante.util.Constants;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

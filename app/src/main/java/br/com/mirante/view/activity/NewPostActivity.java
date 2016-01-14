@@ -1,4 +1,4 @@
-package br.com.mirante.views.activity;
+package br.com.mirante.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,7 +14,7 @@ import com.parse.SaveCallback;
 import br.com.mirante.R;
 import br.com.mirante.model.Channel;
 import br.com.mirante.model.Post;
-import br.com.mirante.utils.Constants;
+import br.com.mirante.util.Constants;
 
 public class NewPostActivity extends AppCompatActivity {
 

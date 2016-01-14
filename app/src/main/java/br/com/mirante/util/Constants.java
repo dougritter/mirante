@@ -1,4 +1,4 @@
-package br.com.mirante.utils;
+package br.com.mirante.util;
 
 /**
  * Created by douglasritter on 12/12/15.

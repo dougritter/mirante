@@ -1,4 +1,4 @@
-package br.com.mirante.views.activity;
+package br.com.mirante.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

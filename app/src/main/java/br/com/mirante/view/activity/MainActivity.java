@@ -1,4 +1,4 @@
-package br.com.mirante.views.activity;
+package br.com.mirante.view.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +20,7 @@ import java.util.List;
 
 import br.com.mirante.R;
 import br.com.mirante.model.Channel;
-import br.com.mirante.utils.Constants;
+import br.com.mirante.util.Constants;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

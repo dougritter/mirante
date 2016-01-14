@@ -1,4 +1,4 @@
-package br.com.mirante.views.activity;
+package br.com.mirante.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -22,7 +21,7 @@ import java.util.List;
 
 import br.com.mirante.R;
 import br.com.mirante.model.Channel;
-import br.com.mirante.utils.Constants;
+import br.com.mirante.util.Constants;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -91,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     if (channels.size() > 0) {
                         Log.e(LOG_TAG, "list is not empty - saving the last item in the localDataStore");
-                        final Channel channel = (Channel) channels.get(channels.size()-1);
+                        final Channel channel = (Channel) channels.get(0);
 
                         channel.pinInBackground(new SaveCallback() {
                             @Override public void done(ParseException e) {

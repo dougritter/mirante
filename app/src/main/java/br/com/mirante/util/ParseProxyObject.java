@@ -1,4 +1,4 @@
-package br.com.mirante.utils;// By Jamie Chapman, @chappers57
+package br.com.mirante.util;// By Jamie Chapman, @chappers57
 // License: open, do as you wish, just don't blame me if stuff breaks ;-)
 
 import com.parse.ParseObject;
