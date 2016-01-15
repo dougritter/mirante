@@ -1,11 +1,15 @@
 package br.com.mirante.view.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -35,6 +39,10 @@ public class HomeActivity extends AppCompatActivity {
     // View Objects
     @Bind(R.id.user) EditText user;
     @Bind(R.id.password) EditText password;
+
+    // Java objects
+    private Channel mSelectedChannel;
+    private List<Channel> mRetrievedChannels;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,14 +74,12 @@ public class HomeActivity extends AppCompatActivity {
                     Log.e(LOG_TAG, "Error on retrieving Channels from localDataStore");
                 }
 
-                if (list.size() > 0) {
-                    Channel channel = (Channel) list.get(0);
-                    Log.e(LOG_TAG, "Found channel selected: " + channel.toString());
-
-                    showFeed();
+                if (list.size() == 0) {
+                    retrieveChannels();
 
                 } else {
-                    retrieveChannels();
+                    mSelectedChannel = (Channel) list.get(0);
+                    Log.e(LOG_TAG, "Found channel selected: " + mSelectedChannel.toString());
                 }
 
             }
@@ -89,17 +95,8 @@ public class HomeActivity extends AppCompatActivity {
                     Log.e(LOG_TAG, "Retrieved channels. Size: "+channels.size());
 
                     if (channels.size() > 0) {
-                        Log.e(LOG_TAG, "list is not empty - saving the last item in the localDataStore");
-                        final Channel channel = (Channel) channels.get(0);
-
-                        channel.pinInBackground(new SaveCallback() {
-                            @Override public void done(ParseException e) {
-                                Log.e(LOG_TAG, "channel "+ channel.toString() + "saved in the localDataStore");
-                            }
-                        });
-
+                        mRetrievedChannels = (List) channels;
                     }
-
 
                 } else {
                     Log.e(LOG_TAG, "Error: " + e.getMessage());
@@ -107,13 +104,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
-
-
     }
-
-
-
 
     @OnClick(R.id.submitButton) void login(View view) {
         if (!user.getText().toString().isEmpty() && !password.getText().toString().isEmpty()) {
@@ -134,6 +125,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void showFeed() {
+        if (mSelectedChannel == null && mRetrievedChannels != null) {
+            showChannelsList(mRetrievedChannels);
+        }
+
         Intent intent = new Intent(HomeActivity.this, FeedActivity.class);
         startActivity(intent);
         finish();
@@ -154,6 +149,52 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Login not successful", Toast.LENGTH_SHORT).show();
 
         }
+
+    }
+
+    public void showChannelsList(List<Channel> channelList) {
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>( this, android.R.layout.select_dialog_multichoice);
+
+        for(int i=0; i<channelList.size(); i++){
+            arrayAdapter.add(channelList.get(i).getName());
+        }
+
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.channels_list_dialog_title)
+                .setAdapter(arrayAdapter, null)
+                .setPositiveButton("Ok", null)
+                .setNegativeButton(getResources().getString(android.R.string.cancel), null)
+                .create();
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override public void onDismiss(DialogInterface dialogInterface) {
+                //TODO pasted code - see it whithout beer
+            }
+        });
+
+        dialog.getListView().setItemsCanFocus(false);
+//        dialog.getListView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+
+        dialog.getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+
+                Log.e(LOG_TAG, "list is not empty - saving the last item in the localDataStore");
+                final Channel channel = mRetrievedChannels.get(position);
+
+                channel.pinInBackground(new SaveCallback() {
+                    @Override public void done(ParseException e) {
+                        Log.e(LOG_TAG, "channel "+ channel.toString() + "saved in the localDataStore");
+                    }
+                });
+
+                showFeed();
+
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
 
     }
 }

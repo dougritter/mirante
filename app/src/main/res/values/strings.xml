@@ -21,4 +21,7 @@
     <string name="title_activity_new_account">NewAccountActivity</string>
     <string name="title_activity_feed">FeedActivity</string>
 
+    <!-- Home Activity -->
+    <string name="channels_list_dialog_title">Escolha comunidade</string>
+
 </resources>
