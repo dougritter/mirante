@@ -57,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             Log.e(LOG_TAG, "User is already logged in: " + ParseUser.getCurrentUser().get(Constants.PARSE_USER_ATTR_NAME));
 //            showFeed();
         } else {
+            retrieveChannels();
             Log.e(LOG_TAG, "User not logged in");
 
         }
@@ -127,11 +128,12 @@ public class HomeActivity extends AppCompatActivity {
     public void showFeed() {
         if (mSelectedChannel == null && mRetrievedChannels != null) {
             showChannelsList(mRetrievedChannels);
+        } else {
+            Intent intent = new Intent(HomeActivity.this, FeedActivity.class);
+            startActivity(intent);
+            finish();
         }
 
-        Intent intent = new Intent(HomeActivity.this, FeedActivity.class);
-        startActivity(intent);
-        finish();
     }
 
 
@@ -162,7 +164,17 @@ public class HomeActivity extends AppCompatActivity {
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle(R.string.channels_list_dialog_title)
                 .setAdapter(arrayAdapter, null)
-                .setPositiveButton("Ok", null)
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override public void onClick(DialogInterface dialogInterface, int i) {
+                        if (mSelectedChannel != null) {
+                            showFeed();
+                        } else {
+                            Toast.makeText(getApplicationContext(),
+                                    getString(R.string.message_need_to_choose_a_channel), Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                })
                 .setNegativeButton(getResources().getString(android.R.string.cancel), null)
                 .create();
 
@@ -180,15 +192,13 @@ public class HomeActivity extends AppCompatActivity {
                                     int position, long id) {
 
                 Log.e(LOG_TAG, "list is not empty - saving the last item in the localDataStore");
-                final Channel channel = mRetrievedChannels.get(position);
+                mSelectedChannel = mRetrievedChannels.get(position);
 
-                channel.pinInBackground(new SaveCallback() {
+                mSelectedChannel.pinInBackground(new SaveCallback() {
                     @Override public void done(ParseException e) {
-                        Log.e(LOG_TAG, "channel "+ channel.toString() + "saved in the localDataStore");
+                        Log.e(LOG_TAG, "channel "+ mSelectedChannel.toString() + "saved in the localDataStore");
                     }
                 });
-
-                showFeed();
 
                 dialog.dismiss();
             }
