@@ -179,9 +179,7 @@ public class HomeActivity extends AppCompatActivity {
                 .create();
 
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override public void onDismiss(DialogInterface dialogInterface) {
-                //TODO pasted code - see it whithout beer
-            }
+            @Override public void onDismiss(DialogInterface dialogInterface) {}
         });
 
         dialog.getListView().setItemsCanFocus(false);

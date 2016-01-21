@@ -56,6 +56,15 @@
             android:label="@string/title_activity_feed"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".view.activity.PostDetail"
+            android:label="@string/title_activity_post_detail"
+            android:parentActivityName=".view.activity.FeedActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.com.mirante.view.activity.FeedActivity"/>
+        </activity>
     </application>
 
 </manifest>

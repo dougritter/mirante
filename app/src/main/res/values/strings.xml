@@ -24,5 +24,6 @@
     <!-- Home Activity -->
     <string name="channels_list_dialog_title">Escolha comunidade</string>
     <string name="message_need_to_choose_a_channel">Por favor, escolha uma comunidade</string>
+    <string name="title_activity_post_detail">PostDetail</string>
 
 </resources>

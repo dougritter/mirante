@@ -21,7 +21,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/app_margin_default">
+            android:layout_margin="@dimen/app_margin_default_min">
 
             <ImageView
                 android:id="@+id/postImage"
@@ -32,15 +32,40 @@
             <TextView
                 android:id="@+id/postTitle"
                 android:text="@{post.getTitle}"
+                tools:text="Title of the post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/postText"
                 android:layout_below="@id/postTitle"
+                android:text="@{post.getText}"
+                tools:text="Text of the post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cardview_comments_bar_height"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_alignParentBottom="true">
+
+                <TextView
+                    android:id="@+id/commentsNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/app_margin_default"
+                    tools:text="123"/>
+
+                <TextView
+                    android:id="@+id/commentsTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/app_margin_default_min"
+                    tools:text="Comentários"/>
+
+            </LinearLayout>
 
         </RelativeLayout>
 
