@@ -24,6 +24,9 @@ import br.com.mirante.util.Constants
 import br.com.mirante.view.adapter.FeedAdapter
 
 class FeedActivity : AppCompatActivity() {
+
+    val LOG_TAG = FeedActivity::class.java.simpleName
+
     private var mRecyclerView: RecyclerView? = null
     private var mAdapter: FeedAdapter? = null
     private var mLayoutManager: RecyclerView.LayoutManager? = null
@@ -69,16 +72,15 @@ class FeedActivity : AppCompatActivity() {
 
     }
 
-
     fun getFeed(channel: Channel) {
-        val query = ParseQuery(Constants.PARSE_CLASS_POST)
-        query.whereEqualTo(Constants.PARSE_ATTR_CHANNEL, channel)
-        query.findInBackground(FindCallback<com.parse.ParseObject> { posts, e ->
+        val kotlinQuery: ParseQuery<ParseObject> = ParseQuery(Constants.PARSE_CLASS_POST)
+        kotlinQuery.whereEqualTo(Constants.PARSE_ATTR_CHANNEL, channel)
+        kotlinQuery.findInBackground({ posts, e ->
             if (e == null) {
                 Log.e(LOG_TAG, "Retrieved posts. Size: " + posts.size)
 
                 if (posts.size > 0) {
-                    mAdapter!!.setDataset(posts)
+                    mAdapter!!.dataset = posts as MutableList<Post>?
 
                 }
             } else {
@@ -87,11 +89,4 @@ class FeedActivity : AppCompatActivity() {
         })
 
     }
-
-    companion object {
-
-        val LOG_TAG = FeedActivity::class.java.simpleName
-    }
-
-
 }

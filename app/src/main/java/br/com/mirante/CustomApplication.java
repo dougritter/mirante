@@ -17,7 +17,7 @@ public class CustomApplication extends Application {
 
     @Override public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+//        Fabric.with(this, new Crashlytics());
 
         ParseObject.registerSubclass(Channel.class);
         ParseObject.registerSubclass(Post.class);
